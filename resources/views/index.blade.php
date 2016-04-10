@@ -5,6 +5,7 @@
 @if (Session::has('success_register'))
 	<h3>{{ Session::get('success_register') }}</h3>
 @endif
+{{ $apartments }}
 <div id="mainslider">
 	<div class="slider">
 		<div class="fullscreen-container">

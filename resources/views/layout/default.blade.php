@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Qvrenti Home</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/animate.css" rel="stylesheet" type="text/css">
-<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/photobox.css" rel="stylesheet" type="text/css">
-<link href="css/revolution-slider.css" rel="stylesheet" type="text/css">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/css/animate.css" rel="stylesheet" type="text/css">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+<link href="/css/photobox.css" rel="stylesheet" type="text/css">
+<link href="/css/revolution-slider.css" rel="stylesheet" type="text/css">
+<link href="/css/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="/css/responsive.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <header>
 	<div class="container">
 		<div class="navigation clearfix">
-			<div class="logo"><a href="index.html"><img src="images/logo-img.jpg" alt="#" /> </a></div>
+			<div class="logo"><a href="index.html"><img src="/images/logo-img.jpg" alt="#" /> </a></div>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar first"></span> <span class="icon-bar middle"></span> <span class="icon-bar last"></span> </button>
 			</div>
@@ -82,7 +82,7 @@
 		<div class="upper-footer clearfix">
 			<div class="widgets">
 				<div class="col-md-3">
-					<div class="about-widget"> <img src="images/footer-logo.png" class="img-responsive" alt="#" />
+					<div class="about-widget"> <img src="/images/footer-logo.png" class="img-responsive" alt="#" />
 						<p>Alternatively if you have a specific service or question in mind please don’t hesitate to contact us to discuss this using the contact details on the Contact Us page of the site.</p>
 					</div>
 				</div>
@@ -133,15 +133,15 @@
 		<p>Made with<span><i class="fa fa-heart-o"></i></span>by <a href="http://themeforest.net/user/Template-Geek">Template-Geek</a> | Copyright 2015</p>
 	</div>
 </footer>
-<script src="js/jquery.js" type="text/javascript"></script> 
-<script src="js/jquery-ui.js" type="text/javascript"></script> 
-<script src="js/bootstrap.js" type="text/javascript"></script> 
-<script type="text/javascript" src="js/jquery.appear.js"></script> 
-<script type="text/javascript" src="js/jquery.mixitup.min.js"></script> 
-<script type="text/javascript" src="js/owl.carousel.min.js"></script> 
-<script type="text/javascript" src="js/jquery.photobox.js"></script> 
-<script src="js/jquery.themepunch.revolution.js" type="text/javascript"></script> 
-<script src="js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
-<script type="text/javascript" src="js/scripts.js"></script>
+<script src="/js/jquery.js" type="text/javascript"></script> 
+<script src="/js/jquery-ui.js" type="text/javascript"></script> 
+<script src="/js/bootstrap.js" type="text/javascript"></script> 
+<script type="text/javascript" src="/js/jquery.appear.js"></script> 
+<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script> 
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.photobox.js"></script> 
+<script src="/js/jquery.themepunch.revolution.js" type="text/javascript"></script> 
+<script src="/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="/js/scripts.js"></script>
 </body>
 </html>
