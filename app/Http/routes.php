@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [
+	'uses'			=>	'GeneralController@home',
+	'as'			=>	'home',
+	'middleware'	=>	'guest',
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,12 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+// Route::group(['middleware' => ['web']], function () {
+// 	// Apartments Resource
+//     Route::resource('apartment', 'Dashboard\ApartmentController');
+// });
+
+Route::resource('apartment', 'Dashboard\ApartmentController');
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
