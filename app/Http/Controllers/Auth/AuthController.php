@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 
+use Illuminate\Support\Facades\Session;
+
+
 class AuthController extends Controller
 {
     /*
@@ -64,7 +67,9 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        // Set a success message for the registered user
         Session::flash('success_register', 'Congratulations you have been succesfully registered!');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
