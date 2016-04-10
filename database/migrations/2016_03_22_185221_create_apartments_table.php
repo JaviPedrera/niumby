@@ -12,13 +12,16 @@ class CreateApartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('apartments', function (Blueprint $table) {
+        Schema::create('apartments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->integer('price_per_day');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                     ->references('id')
-                    ->on('users');
+                    ->on('users')
+                    ->onDelete('cascade');
             $table->string('img_path');
             $table->string('thumbnail_path');
             $table->integer('max_persons');
@@ -36,8 +39,6 @@ class CreateApartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('apartments', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('inbody');
     }
 }
