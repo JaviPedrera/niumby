@@ -39,6 +39,6 @@ class CreateApartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inbody');
+        Schema::drop('apartments');
     }
 }

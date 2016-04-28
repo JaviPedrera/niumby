@@ -12,8 +12,17 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
-        Schema::table('pictures', function (Blueprint $table) {
-            //
+        Schema::create('pictures', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('apartment_id')->unsigned();
+            $table->foreign('apartment_id')
+                    ->references('id')
+                    ->on('apartments')
+                    ->onDelete('cascade');
+            $table->string('route');
+            $table->string('thumbnail');
+            $table->timestamps();
         });
     }
 
@@ -24,8 +33,6 @@ class CreatePicturesTable extends Migration
      */
     public function down()
     {
-        Schema::table('pictures', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('pictures');
     }
 }
