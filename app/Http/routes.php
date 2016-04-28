@@ -14,7 +14,7 @@
 Route::get('/', [
 	'uses'			=>	'GeneralController@home',
 	'as'			=>	'home',
-	'middleware'	=>	'guest',
+	'middleware'	=>	['guest','web'],
 ]);
 
 /*
@@ -28,15 +28,32 @@ Route::get('/', [
 |
 */
 
-// Route::group(['middleware' => ['web']], function () {
-// 	// Apartments Resource
-//     Route::resource('apartment', 'Dashboard\ApartmentController');
-// });
-
-Route::resource('apartment', 'Dashboard\ApartmentController');
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/apartments', 'ApartmentController@index');
+    Route::get('/apartment/{apartment_name}', 'ApartmentController@getApartmentByName');
+
+    Route::group(['middleware' => 'auth'], function () {
+    	
+    	Route::get('/apartment/create', [
+            'uses' => 'ApartmentController@create',
+            'as'   => 'apartment.create'
+    	]);
+
+    	Route::get('/apartment/edit', [
+            'uses' => 'ApartmentController@edit',
+            'as'   => 'apartment.edit',
+    	]);
+		    	
+    	Route::get('/apartment/my_apartments', [
+            'uses' => 'ApartmentController@dashboard',
+            'as'   => 'apartment.dashboard',
+    	]);
+
+    	Route::post('/apartment/create', [
+            'uses' => 'ApartmentController@store',
+            'as'   => 'apartment.store',
+    	]);
+    });
 });
