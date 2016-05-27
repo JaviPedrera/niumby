@@ -32,28 +32,36 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/apartments', 'ApartmentController@index');
-    Route::get('/apartment/{apartment_name}', 'ApartmentController@getApartmentByName');
-
+    
     Route::group(['middleware' => 'auth'], function () {
-    	
-    	Route::get('/apartment/create', [
+        
+        Route::get('/apartment/create', [
             'uses' => 'ApartmentController@create',
             'as'   => 'apartment.create'
-    	]);
+        ]);
 
-    	Route::get('/apartment/edit', [
-            'uses' => 'ApartmentController@edit',
-            'as'   => 'apartment.edit',
-    	]);
-		    	
-    	Route::get('/apartment/my_apartments', [
-            'uses' => 'ApartmentController@dashboard',
-            'as'   => 'apartment.dashboard',
-    	]);
-
-    	Route::post('/apartment/create', [
+        Route::post('/apartment/create', [
             'uses' => 'ApartmentController@store',
             'as'   => 'apartment.store',
-    	]);
+        ]);
+
+        Route::get('/apartment/edit', [
+            'uses' => 'ApartmentController@edit',
+            'as'   => 'apartment.edit',
+        ]);
+                
+        Route::get('/apartment/my-apartments', [
+            'uses' => 'ApartmentController@dashboard',
+            'as'   => 'apartment.dashboard',
+        ]);
+        
     });
+
+    Route::get('/apartment/{apartment_name}', 'ApartmentController@getApartmentByName');
 });
+
+    Route::group(['prefix' => 'api/v1'], function() {
+        Route::get('/apartments/{identifier}/reviews', 'ApartmentReviewController@index');
+        Route::resource('apartments', 'ApartmentApiController', ['only' => ['index', 'show', 'store', 'update']]);
+        Route::resource('reviews', 'ReviewApiController', ['only' => ['index', 'show', 'store', 'update']]);
+    });
