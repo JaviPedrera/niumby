@@ -8,6 +8,11 @@ class Review extends Model
 {
     public $table = "reviews";
 
+    protected $appends = [
+        'publisher',
+        'apartment_name'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,11 +36,8 @@ class Review extends Model
     }
 
     /**
-     * 
      *	Scopes
-     * 
      */
-
     public function scopeRatingAsc($query)
     {
     	$query->orderBy('rating', 'asc');

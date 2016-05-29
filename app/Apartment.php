@@ -13,16 +13,22 @@ class Apartment extends Model
      *
      * @var array
      */
-    // protected $fillable = [
-    //     //
-    // ];
+    protected $fillable = [
+        'title',
+        'user_id', 
+        'description', 
+        'price_per_day', 
+        'max_persons', 
+        'min_nights',
+    ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
+    public function owner()
+    {
+        return $this->belongsTo('App\User','user_id','id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'apartment_id', 'id');
+    }
 }

@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+use \App\Apartment;
+
 class User extends Authenticatable
 {
     /**
@@ -23,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * 
+     *  Relations
+     * 
+     */
+    public function apartments()
+    {
+        return $this->hasMany('\App\Apartment', 'user_id', 'id');
+    }
 }
