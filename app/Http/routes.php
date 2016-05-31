@@ -1,67 +1,30 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+Route::group(['prefix' => 'api/v1'], function() {
+    Route::post('/register', 'AuthenticateController@register');
+    Route::post('/login', 'AuthenticateController@authenticate');
 
-Route::get('/', [
-	'uses'			=>	'GeneralController@home',
-	'as'			=>	'home',
-	'middleware'	=>	['guest','web'],
-]);
+    // Apartments
+    Route::get('apartments', 'ApartmentApiController@index');
+    Route::get('apartments/{identifier}', 'ApartmentApiController@show');
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+    // Reviews
+    Route::get('reviews', 'ReviewApiController@index');
+    Route::get('reviews/{identifier}', 'ReviewApiController@show');
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/apartments', 'ApartmentController@index');
+    // Apartment reviews
+    Route::get('/apartments/{identifier}/reviews', 'ApartmentReviewController@index');
     
-    Route::group(['middleware' => 'auth'], function () {
-        
-        Route::get('/apartment/create', [
-            'uses' => 'ApartmentController@create',
-            'as'   => 'apartment.create'
-        ]);
+    // Routes protected with JWT
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        // Apartments
+        Route::post('apartments/create', 'ApartmentApiController@store');
+        Route::delete('apartments/delete', 'ApartmentApiController@destroy');
+        Route::patch('apartments/update', 'ApartmentApiController@update');
 
-        Route::post('/apartment/create', [
-            'uses' => 'ApartmentController@store',
-            'as'   => 'apartment.store',
-        ]);
-
-        Route::get('/apartment/edit', [
-            'uses' => 'ApartmentController@edit',
-            'as'   => 'apartment.edit',
-        ]);
-                
-        Route::get('/apartment/my-apartments', [
-            'uses' => 'ApartmentController@dashboard',
-            'as'   => 'apartment.dashboard',
-        ]);
-        
+        // Reviews
+        Route::post('reviews/create', 'ReviewApiController@store');
+        Route::delete('reviews/delete', 'ReviewApiController@destroy');
+        Route::patch('reviews/update', 'ReviewApiController@update');  
     });
-
-    Route::get('/apartment/{apartment_name}', 'ApartmentController@getApartmentByName');
 });
-
-    Route::group(['prefix' => 'api/v1'], function() {
-        Route::get('/apartments/{identifier}/reviews', 'ApartmentReviewController@index');
-        Route::resource('apartments', 'ApartmentApiController', ['only' => ['index', 'show', 'store', 'update']]);
-        Route::resource('reviews', 'ReviewApiController', ['only' => ['index', 'show', 'store', 'update']]);
-    });
