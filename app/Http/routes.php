@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 
 Route::group(['prefix' => 'api/v1'], function() {
     Route::post('/register', 'AuthenticateController@register');
