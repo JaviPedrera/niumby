@@ -2,16 +2,16 @@
 header('Access-Control-Allow-Origin: *');
 
 Route::group(['prefix' => 'api/v1'], function() {
-    Route::post('/register', 'AuthenticateController@register');
-    Route::post('/login', 'AuthenticateController@authenticate');
+    Route::post('/register', 'Auth\AuthController@postRegister');
+    Route::post('/login', 'Auth\AuthController@authenticate');
 
     // Apartments
-    Route::get('apartments', 'ApartmentApiController@index');
-    Route::get('apartments/{identifier}', 'ApartmentApiController@show');
+    Route::get('apartments', 'ApartmentController@index');
+    Route::get('apartments/{identifier}', 'ApartmentController@show');
 
     // Reviews
-    Route::get('reviews', 'ReviewApiController@index');
-    Route::get('reviews/{identifier}', 'ReviewApiController@show');
+    Route::get('reviews', 'UserReviewController@index');
+    Route::get('reviews/{identifier}', 'UserReviewController@show');
 
     // Apartment reviews
     Route::get('/apartments/{identifier}/reviews', 'ApartmentReviewController@index');
@@ -19,13 +19,18 @@ Route::group(['prefix' => 'api/v1'], function() {
     // Routes protected with JWT
     Route::group(['middleware' => ['jwt.auth']], function () {
         // Apartments
-        Route::post('apartments/create', 'ApartmentApiController@store');
-        Route::delete('apartments/delete', 'ApartmentApiController@destroy');
-        Route::patch('apartments/update', 'ApartmentApiController@update');
+        Route::post('apartments/create', 'ApartmentController@store');
+        Route::delete('apartments/delete/{id}', 'ApartmentController@destroy');
+        Route::patch('apartments/update/{id}', 'ApartmentController@update');
 
-        // Reviews
-        Route::post('reviews/create', 'ReviewApiController@store');
-        Route::delete('reviews/delete', 'ReviewApiController@destroy');
-        Route::patch('reviews/update', 'ReviewApiController@update');  
+        // Apartment Reviews
+        Route::post('apartment_reviews/create', 'ApartmentReviewController@store');
+        Route::delete('apartment_reviews/delete/{id}', 'ApartmentReviewController@destroy');
+        Route::patch('apartment_reviews/update/{id}', 'ApartmentReviewController@update');
+
+        // User Reviews
+        Route::post('user_reviews/create', 'UserReviewController@store');
+        Route::delete('user_reviews/delete/{id}', 'UserReviewController@destroy');
+        Route::patch('user_reviews/update/{id}', 'UserReviewController@update'); 
     });
 });
